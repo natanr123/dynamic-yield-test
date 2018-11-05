@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid, Table, TableHeaderRow } from '@devexpress/dx-react-grid-bootstrap4';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import './style.scss';
@@ -14,6 +15,8 @@ const Cell = (props) => {
       </Table.Cell>);
   } else if (column.name === 'repos') {
     return <ReposCell {...props} />;
+  } else if (column.name === 'login') {
+    return <NameCell {...props} />;
   }
   return <Table.Cell {...props} />;
 };
@@ -51,6 +54,15 @@ ReposCell.propTypes = {
   row: PropTypes.any,
 };
 
+const NameCell = (props) => (
+  <Table.Cell>
+    <Link to={`/users/${props.value}`}>{props.value}</Link>
+  </Table.Cell>
+);
+
+NameCell.propTypes = {
+  value: PropTypes.any,
+};
 
 const UsersGrid = ({ rows }) =>
   (
