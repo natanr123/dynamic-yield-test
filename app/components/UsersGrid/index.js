@@ -6,15 +6,15 @@ import './style.scss';
 const Cell = (props) => {
   const { column } = props;
   if (column.name === 'avatar_url') {
-    console.log('this.props.values: ', props.value);
     return (
       <Table.Cell {...props} >
-        <image src={props.value} />
+        <img src={props.value} alt="Avatar" />
       </Table.Cell>);
+  } else if (column.name === 'repos') {
+    return <ReposCell {...props} />;
   }
   return <Table.Cell {...props} />;
 };
-
 
 Cell.propTypes = {
   column: PropTypes.any,
@@ -22,33 +22,52 @@ Cell.propTypes = {
 };
 
 
-const UsersGrid = ({ rows }) => {
-  return (
-    <Grid
-      rows={rows}
-      columns={[
-        {
-          name: 'id',
-          title: 'ID',
-        },
-        {
-          name: 'login',
-          title: 'Name',
-        },
-        {
-          name: 'avatar_url',
-          title: 'Image',
-        },
-        {
-          name: 'repos',
-          title: 'Repos',
-        },
-      ]}
-    >
-      <Table cellComponent={Cell} />
-      <TableHeaderRow />
-    </Grid>);
+class ReposCell extends React.PureComponent {
+  componentDidMount() {
+
+  }
+  render() {
+    return (
+      <Table.Cell>
+        <span>123</span>
+      </Table.Cell>
+    );
+  }
+}
+
+ReposCell.propTypes = {
 };
+
+
+const UsersGrid = ({ rows }) =>
+  (
+    <div className={'the-grid'} >
+      <Grid
+        rows={rows}
+        columns={[
+          {
+            name: 'id',
+            title: 'ID',
+          },
+          {
+            name: 'login',
+            title: 'Name',
+          },
+          {
+            name: 'avatar_url',
+            title: 'Image',
+          },
+          {
+            name: 'repos',
+            title: 'Repos',
+          },
+        ]}
+      >
+        <Table cellComponent={Cell} />
+        <TableHeaderRow />
+      </Grid>
+    </div>);
+
 
 UsersGrid.propTypes = {
   rows: PropTypes.any,

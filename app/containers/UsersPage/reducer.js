@@ -10,7 +10,6 @@ export const initialState = fromJS(
 function problemReducer(state = initialState, action) {
   switch (action.type) {
     case constants.USERS_LOADED:
-      console.log('ccccccccccC: ', action.users);
       return state.set('users', action.users);
     default:
       return state;

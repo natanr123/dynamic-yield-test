@@ -12,17 +12,10 @@ const texts = {
 
 export default class AnalyzeResult {
   constructor(riskItems) {
-    console.log('aaaaaaaaaaaaaaaa');
     this.riskItems = riskItems;
-    console.log('bbbbbbbbbbbbbbbb');
-    console.log('bbbbbbbbbb22222222: ', RiskItem);
     const scope = RiskItem.scope(this.riskItems);
-    console.log('ccccccccccccccccccc');
-    console.log('scope: ', scope);
-    console.log('dddddddddddddddddddddddd');
     this.lines = scope.sortByLevel().reverse().finish();
     this.highest = this.getHighest();
-    console.log('ddddddddddddd');
     this.message = this.getMessage();
   }
 
