@@ -7,6 +7,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import UsersGrid from 'components/UsersGrid/index';
+import { Card } from 'reactstrap';
+
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -34,35 +36,37 @@ export class Page extends React.PureComponent {
             content="Users Page"
           />
         </Helmet>
-        <h1>Users List</h1>
+        <Card>
+          <h1>Users List</h1>
 
-        <Formik
-          onSubmit={(values) => { this.props.loadUsers(values.username); }}
-          initialValues={{ username: 'natan' }}
-        >
-          {({ values }) => (
-            <Form>
-              <span>Enter the user name:</span>
-              <br />
-              <Field
-                type={'text'}
-                name={'username'}
-                style={{ width: '300px', height: '30px', border: 'solid' }}
-              />
-              <button type="submit" >
-                Submit
-              </button>
-              <br />
-            </Form>
-          )}
-        </Formik>
+          <Formik
+            onSubmit={(values) => { this.props.loadUsers(values.username); }}
+            initialValues={{ username: 'natan' }}
+          >
+            {({ values }) => (
+              <Form>
+                <span>Enter the user name:</span>
+                <br />
+                <Field
+                  type={'text'}
+                  name={'username'}
+                  style={{ width: '300px', height: '30px', border: 'solid' }}
+                />
+                <button type="submit" >
+                  Submit
+                </button>
+                <br />
+              </Form>
+            )}
+          </Formik>
+          {this.props.users ?
+            <UsersGrid rows={this.props.users} /> : ''
+          }
+          {this.props.loading ?
+            <h3>Loading Please Wait ...</h3> : ''
+          }
+        </Card>
 
-        <div className="alert alert-primary" role="alert">
-          A simple primary alert—check it out!
-        </div>
-        {this.props.users ?
-          <UsersGrid rows={this.props.users} /> : ''
-        }
 
       </article>
     );
@@ -72,6 +76,7 @@ export class Page extends React.PureComponent {
 Page.propTypes = {
   loadUsers: PropTypes.func,
   users: PropTypes.any,
+  loading: PropTypes.any,
 };
 
 export function mapDispatchToProps(dispatch) {
