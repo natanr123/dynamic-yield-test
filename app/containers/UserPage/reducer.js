@@ -3,17 +3,17 @@ import * as constants from './constants';
 
 export const initialState = fromJS(
   {
-    notes: null,
+    user: null,
   }
 );
 
-function problemReducer(state = initialState, action) {
+function reducer(state = initialState, action) {
   switch (action.type) {
-    case constants.NOTES_LOADED:
-      return state.set('notes', action.notes);
+    case constants.USER_LOADED:
+      return state.set('user', action.user);
     default:
       return state;
   }
 }
 
-export default problemReducer;
+export default reducer;

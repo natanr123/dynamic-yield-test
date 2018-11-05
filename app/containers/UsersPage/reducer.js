@@ -7,7 +7,7 @@ export const initialState = fromJS(
   }
 );
 
-function problemReducer(state = initialState, action) {
+function reducer(state = initialState, action) {
   switch (action.type) {
     case constants.USERS_LOADED:
       return state.set('users', action.users);
@@ -16,4 +16,4 @@ function problemReducer(state = initialState, action) {
   }
 }
 
-export default problemReducer;
+export default reducer;

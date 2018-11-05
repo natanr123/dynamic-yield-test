@@ -6,7 +6,6 @@ import * as constants from './constants';
 function* loadUsersWorker(action) {
   const url = `https://api.github.com/search/users?q=${action.username}`;
   const response = yield effects.call(() => axios.get(url));
-  console.log('response.data.itemsresponse.data.itemsresponse.data.items: ',response.data.items);
   yield effects.put(actions.usersLoaded(response.data.items));
 }
 

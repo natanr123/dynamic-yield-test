@@ -3,15 +3,14 @@ import * as effects from 'redux-saga/effects';
 import * as actions from './actions';
 import * as constants from './constants';
 
-function* loadNotesWorker() {
-  const url = 'http://localhost:3001/notes/all';
+function* loadUser(action) {
+  const url = `https://api.github.com/users/${action.username}`;
   const response = yield effects.call(() => axios.get(url));
-  console.log(response.data);
-  yield effects.put(actions.nodesLoaded(response.data));
+  yield effects.put(actions.userLoaded(response.data));
 }
 
 export function* startWatcher() {
   yield [
-    effects.takeLatest(constants.LOAD_NOTES, loadNotesWorker),
+    effects.takeLatest(constants.LOAD_USER, loadUser),
   ];
 }

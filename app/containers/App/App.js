@@ -10,11 +10,10 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Switch, Route } from 'react-router-dom';
 
-import StartPage from 'containers/StartPage/Loadable';
-import ListPage from 'containers/ListPage/Loadable';
-import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import UsersPage from 'containers/UsersPage/Loadable';
+import UserPage from 'containers/UserPage/Loadable';
+
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 
@@ -30,10 +29,7 @@ const App = () => (
     <Header />
     <Switch>
       <Route exact path="/" component={UsersPage} />
-      <Route exact path="/start" component={StartPage} />
-      <Route exact path="/home" component={HomePage} />
-      <Route exact path="/list" component={HomePage} />
-
+      <Route exact path="/users/:login" component={UserPage} />
       <Route path="" component={NotFoundPage} />
     </Switch>
     <Footer />
