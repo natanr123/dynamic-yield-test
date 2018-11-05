@@ -1,5 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  SortingState,
+  IntegratedSorting,
+} from '@devexpress/dx-react-grid';
 import { Grid, Table, TableHeaderRow } from '@devexpress/dx-react-grid-bootstrap4';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -88,8 +92,12 @@ const UsersGrid = ({ rows }) =>
           },
         ]}
       >
+        <SortingState
+          defaultSorting={[{ columnName: 'id', direction: 'asc' }]}
+        />
+        <IntegratedSorting />
         <Table cellComponent={Cell} />
-        <TableHeaderRow />
+        <TableHeaderRow showSortingControls />
       </Grid>
     </div>);
 
