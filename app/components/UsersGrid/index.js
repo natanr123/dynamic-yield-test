@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid, Table, TableHeaderRow } from '@devexpress/dx-react-grid-bootstrap4';
+import axios from 'axios';
+
 import './style.scss';
 
 const Cell = (props) => {
@@ -23,19 +25,30 @@ Cell.propTypes = {
 
 
 class ReposCell extends React.PureComponent {
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.state = { count: 'Loading...' };
+  }
 
+  componentDidMount() {
+    const { row } = this.props;
+
+    axios.get(`https://api.github.com/users/${row.login}`)
+      .then((response) => {
+        this.setState({ count: response.data.public_repos });
+      });
   }
   render() {
     return (
       <Table.Cell>
-        <span>123</span>
+        <span>{this.state.count}</span>
       </Table.Cell>
     );
   }
 }
 
 ReposCell.propTypes = {
+  row: PropTypes.any,
 };
 
 

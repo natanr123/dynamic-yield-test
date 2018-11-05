@@ -6,7 +6,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import UsersGrid from 'components/UsersGrid';
+import UsersGrid from 'components/UsersGrid/index';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
